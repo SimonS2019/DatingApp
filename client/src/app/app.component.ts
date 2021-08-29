@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   users: any;
   constructor(private http: HttpClient) {}
   // ngOnInit(): void {
-  // 删掉 : void
+  // 删掉  : void 
   ngOnInit() {
     this.getUsers();
   }
