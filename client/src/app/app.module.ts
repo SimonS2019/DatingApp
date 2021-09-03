@@ -5,19 +5,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NavComponent } from './nav/nav.component';
+import{FormsModule} from '@angular/forms'
 
 //We have a decorator to tell Angella that this is a module and angular module.
 @NgModule({
   declarations: [
 
-    AppComponent
+    AppComponent,
+
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
