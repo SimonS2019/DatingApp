@@ -27,4 +27,9 @@ this.accountServices.login(this.model).subscribe((response) => {
 })
 }
 
+logout(){
+  this.loggedIn = false;
+}
+
+
 }

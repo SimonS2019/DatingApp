@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import{FormsModule} from '@angular/forms'
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 //We have a decorator to tell Angella that this is a module and angular module.
 @NgModule({
@@ -22,6 +25,10 @@ import{FormsModule} from '@angular/forms'
     HttpClientModule,
     NgbModule,
     FormsModule,
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
