@@ -55,7 +55,8 @@ namespace API
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         //顺序很重要 在Configure
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // Middleware
+                public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

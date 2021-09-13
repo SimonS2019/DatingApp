@@ -17,7 +17,7 @@ currentUser$ = this.currentUserSoure.asObservable();
 
   constructor(private http: HttpClient) {}
   login(model: any) {
-    // <User> 这里我和Neil 的不一样，有些和我一样报错了。
+    // <User> 这里我和Neil 的不一样，有些和我一样报错了,参看question 后解决， Angiular 11 ,要求更严格 ， 我们可以在tsconfig。json里面吧strict 改成false。
     return this.http.post(this.baseUrl + 'account/login', model).pipe(map((response: User )=>{
       const user = response;
       if (user) {
