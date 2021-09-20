@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   model : any = {};
-
+@Input() usersFormHomeComponent : any;
   constructor() { }
 
   ngOnInit(): void {
@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   }
 register(){
   console.log(this.model);
+  console.log(this.usersFormHomeComponent);
   
 }
 
