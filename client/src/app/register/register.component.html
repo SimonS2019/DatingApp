@@ -10,12 +10,7 @@
       placeholder="Username"
     />
   </div>
-  <div class="form-group">
-    <label>Who si </label>
-    <select class="form-control">
-      <option *ngFor="let user of usersFormHomeComponent" [value]="user.userName">{{user.userName}}</option>
-    </select>
-  </div>
+
 
   <div class="form-group">
     <input
@@ -31,5 +26,11 @@
     <button class="btn btn-default mr-2" (click)="cancel()" type="button">
       Cancel
     </button>
+  </div>
+  <div class="form-group" style="padding-top: 50px;">
+    <label>Who is you favourite(Example for how data transfer to different component) </label>
+    <select class="form-control">
+      <option *ngFor="let user of usersFormHomeComponent" [value]="user.userName">{{user.userName}}</option>
+    </select>
   </div>
 </form>

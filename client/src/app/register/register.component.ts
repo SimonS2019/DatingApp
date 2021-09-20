@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -8,20 +9,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   model : any = {};
 @Input() usersFormHomeComponent : any;
-  constructor() { }
+@Output() cancelRegister = new EventEmitter
+  constructor(private accountService :AccountService) { }
 
   ngOnInit(): void {
 
   }
 register(){
-  console.log(this.model);
-  console.log(this.usersFormHomeComponent);
+this.accountService.register(this.model).subscribe(response =>{
+  console.log(response);
+  this,this.cancel()
+}, error =>{
+  console.log(error);
+  
+})
   
 }
 
 cancel(){
-  console.log("cansel");
-  
+this.cancelRegister.emit(false)  
 }
 
 }
