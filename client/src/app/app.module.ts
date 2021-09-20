@@ -11,6 +11,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ListComponent } from './list/list.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 //We have a decorator to tell Angella that this is a module and angular module.
@@ -23,7 +27,15 @@ import { RegisterComponent } from './register/register.component';
 
     HomeComponent,
 
-    RegisterComponent
+    RegisterComponent,
+
+    MemberListComponent,
+
+    MemberDetailComponent,
+
+    ListComponent,
+
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
