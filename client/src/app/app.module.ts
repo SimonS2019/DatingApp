@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
-import{FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
@@ -15,12 +15,12 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modules/shared.module';
 
 //We have a decorator to tell Angella that this is a module and angular module.
 @NgModule({
   declarations: [
-
     AppComponent,
 
     NavComponent,
@@ -35,7 +35,7 @@ import { MessagesComponent } from './messages/messages.component';
 
     ListComponent,
 
-    MessagesComponent
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,12 +43,10 @@ import { MessagesComponent } from './messages/messages.component';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
-
-
+ SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
