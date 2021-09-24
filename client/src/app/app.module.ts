@@ -23,6 +23,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 //We have a decorator to tell Angella that this is a module and angular module.
 @NgModule({
@@ -50,6 +51,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     ServerErrorComponent,
 
     MemberCardComponent,
+
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
