@@ -26,6 +26,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 
 //We have a decorator to tell Angella that this is a module and angular module.
 @NgModule({
@@ -55,6 +56,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MemberCardComponent,
 
     MemberEditComponent,
+
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,

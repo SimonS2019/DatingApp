@@ -9,7 +9,7 @@ import { User } from '../_models/user';
   providedIn: 'root',
 })
 export class AccountService {
-  baseUrl = environment.apiUrl;
+baseUrl = environment.apiUrl;
   //就像个缓冲文件， 1 定义我们只需要一个
 private currentUserSoure = new ReplaySubject<User>(1);
 
@@ -22,8 +22,9 @@ currentUser$ = this.currentUserSoure.asObservable();
     return this.http.post(this.baseUrl + 'account/login', model).pipe(map((response: User )=>{
       const user = response;
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user))
+        // localStorage.setItem('user', JSON.stringify(user))
         //当Observable产生一个新值时，会通知 observer 的 next()，而当捕获失败可以调用 error()。
+        // this.currentUserSoure.next(user);
         this.currentUserSoure.next(user);
       }
     }))
@@ -32,14 +33,17 @@ currentUser$ = this.currentUserSoure.asObservable();
 register(model:any){
   return this.http.post(this.baseUrl + 'account/register', model).pipe(map((user: User) =>{
     if(user){
-localStorage.setItem('user',JSON.stringify(user));
-this.currentUserSoure.next(user);
+// localStorage.setItem('user',JSON.stringify(user));
+// this.currentUserSoure.next(user);
+this.setCurrentUser(user);
     }
     return user;
   }))
 }
 
   setCurrentUser(user : User){
+    localStorage.setItem('user', JSON.stringify(user))
+
     this.currentUserSoure.next(user);
 
   }
