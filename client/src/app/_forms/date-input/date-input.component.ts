@@ -1,3 +1,5 @@
+
+   
 import { Component, Input, OnInit, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -8,9 +10,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./date-input.component.css']
 })
 export class DateInputComponent implements ControlValueAccessor {
-  @Input() label: string;
-  @Input() maxDate: Date;
-  bsConfig: Partial<BsDatepickerConfig>;
+
 
   constructor(@Self() public ngControl: NgControl) { 
     this.ngControl.valueAccessor = this;
@@ -19,6 +19,17 @@ export class DateInputComponent implements ControlValueAccessor {
       dateInputFormat: 'DD MMMM YYYY'
     }
   }
+  @Input() label: string;
+  @Input() maxDate: Date;
+  bsConfig: Partial<BsDatepickerConfig>;
+
+  // constructor(@Self() public ngControl: NgControl) { 
+  //   this.ngControl.valueAccessor = this;
+  //   this.bsConfig = {
+  //     containerClass: 'theme-red',
+  //     dateInputFormat: 'DD MMMM YYYY'
+  //   }
+  // }
 
   writeValue(obj: any): void {
   }
@@ -29,19 +40,3 @@ export class DateInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {
   }
 }
-
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-date-input',
-//   templateUrl: './date-input.component.html',
-//   styleUrls: ['./date-input.component.css']
-// })
-// export class DateInputComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
