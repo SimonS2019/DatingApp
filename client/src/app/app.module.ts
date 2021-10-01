@@ -26,6 +26,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
 
 //We have a decorator to tell Angella that this is a module and angular module.
 @NgModule({
@@ -59,6 +60,8 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     PhotoEditorComponent,
 
     TextInputComponent,
+
+    DateInputComponent,
   ],
   imports: [
     BrowserModule,
