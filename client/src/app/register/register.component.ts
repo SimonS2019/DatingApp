@@ -17,16 +17,18 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   this.intitializeForm() 
-
-
-
   }
 
   intitializeForm() {
-    this.registerForm = new FormGroup({
-      username : new FormControl('',Validators.required),
-      password : new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(8)]),
-      confirmPassword : new FormControl('',[Validators.required,this.matchValue('password')]),
+    this.registerForm = this.fb.group({
+      gender: ['male'],
+      username: ['', Validators.required],
+      knownAs: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      password : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(8)]],
+      confirmPassword :['',[Validators.required,this.matchValue('password')]],
     })
 this.registerForm.controls.password.valueChanges.subscribe(()=>{
   this.registerForm.controls.confirmPassword.updateValueAndValidity();
