@@ -65,6 +65,9 @@ export class RegisterComponent implements OnInit {
 
   register() {
     // console.log(this.registerForm.value);
+    console.log("111");
+    
+console.log(this.validationErrors);
 
     this.accountService.register(this.registerForm.value).subscribe(
       (response) => {
