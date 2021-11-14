@@ -2,7 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Member } from 'src/app/_models/member';
 import { Pagination } from 'src/app/_models/pagination';
+import { UserParams } from 'src/app/_models/userParams';
+import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
+import { User } from 'src/app/_models/user';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-member-list',
@@ -13,10 +17,15 @@ import { MembersService } from 'src/app/_services/members.service';
 export class MemberListComponent implements OnInit {
 members: Member[];
 pagination: Pagination;
-pageNumber = 1;
-pageSize=5;
+userParams: UserParams;
+  user: User;
 
-  constructor(private memberService :  MembersService) { }
+  constructor(private memberService :  MembersService, private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user=>{
+      this.user = user;
+      this.userParams = new UserParams(user);
+    })
+   }
 
   ngOnInit(): void {
     this.loadMembers()
@@ -27,16 +36,25 @@ pageSize=5;
 
 
 
-loadMembers(){
-  this.memberService.getMembers(this.pageNumber,this.pageSize).subscribe(response=>{
-    this.members = response.result;
-    // console.log("nnn");
-    this.pagination = response.pagination;
+// loadMembers(){
+//   this.memberService.getMembers(this.pageNumber,this.pageSize).subscribe(response=>{
+//     this.members = response.result;
+//     // console.log("nnn");
+//     this.pagination = response.pagination;
     
+//   })
+// }
+
+loadMembers() {
+  // this.memberService.setUserParams(this.userParams);
+  this.memberService.getMembers(this.userParams).subscribe(response => {
+    this.members = response.result;
+    this.pagination = response.pagination;
   })
 }
+
 pageChanged(event:any){
-  this.pageNumber=event.page;
+  this.userParams.pageNumber=event.page;
   this.loadMembers();
   console.log("sdd");
   
