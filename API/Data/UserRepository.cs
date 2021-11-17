@@ -86,6 +86,11 @@ namespace API.Data
 
         }
 
+        public Task GetUserByIdAsync(object username)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             // throw new NotImplementedException();
