@@ -10,6 +10,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from 'ngx-timeago';
 
 
 @NgModule({
@@ -26,6 +27,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
+    TimeagoModule.forRoot()
+
 
   ],
   exports: [
@@ -37,6 +40,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     BsDatepickerModule,
     PaginationModule,
     ButtonsModule,
+    TimeagoModule
+
 
   ]
 })
