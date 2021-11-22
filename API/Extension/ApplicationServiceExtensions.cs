@@ -6,6 +6,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using API.Helpers;
+using API.Interfaces;
 
 namespace API.Extension
 {
@@ -16,6 +17,7 @@ namespace API.Extension
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ILikesRepository, LikesRepository>();
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
