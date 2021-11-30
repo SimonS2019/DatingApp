@@ -25,7 +25,8 @@ currentUser$ = this.currentUserSoure.asObservable();
         // localStorage.setItem('user', JSON.stringify(user))
         //当Observable产生一个新值时，会通知 observer 的 next()，而当捕获失败可以调用 error()。
         // this.currentUserSoure.next(user);
-        this.currentUserSoure.next(user);
+        // this.currentUserSoure.next(user);
+        this.setCurrentUser(user)
       }
     }))
   }
