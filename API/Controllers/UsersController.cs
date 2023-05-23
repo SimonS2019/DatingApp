@@ -24,7 +24,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-         string cookieName = "myCookie2s2";
+         string cookieName = "myCookie2s32";
     string cookieValue = "myValue";
     
     // Create a new cookie object
