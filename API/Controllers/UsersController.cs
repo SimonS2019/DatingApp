@@ -24,9 +24,23 @@ namespace API.Controllers
 
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
+         string cookieName = "myCookie2s32";
+    string cookieValue = "myValue";
+    
+    // Create a new cookie object
+    var cookieOptions = new CookieOptions
+    {
+        HttpOnly = false,
+        Secure = true,
+        SameSite = SameSiteMode.None,
+        Expires = DateTimeOffset.Now.AddDays(1)
+    };
+    
+    // Add the cookie to the response
+    HttpContext.Response.Cookies.Append(cookieName, cookieValue, cookieOptions);
 
-            return users;
+    // Return your response
+    return Ok("Response with cookie");
         }
 
         [HttpGet("{id}")]
