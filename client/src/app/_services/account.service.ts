@@ -14,17 +14,7 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login(model: any) {
-    return this.http.post(this.baseUrl + 'account/login', model).pipe(
-      map((response: any) => {
-        const user = response;
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          // this.currentUserSource.next(user);
-          console.log(user);
-          
-        }
-      })
-    )
+    return this.http.post(this.baseUrl + 'account/login', model)
     // return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
     //   map((response: User) => {
     //     const user = response;
