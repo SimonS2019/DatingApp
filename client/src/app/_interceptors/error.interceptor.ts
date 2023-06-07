@@ -20,17 +20,17 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error) {
           switch (error.status) {
-            case 400:
+            case 400:  //400 has two different situations.
               if (error.error.errors) {
                 const modelStateErrors = [];
                 for (const key in error.error.errors) {
                   if (error.error.errors[key]) {
-                    modelStateErrors.push(error.error.errors[key])
+                    modelStateErrors.push(error.error.errors[key]) //validation return 400
                   }
                 }
                 throw modelStateErrors.flat();
               } else {
-                this.toastr.error(error.error, error.status.toString())
+                this.toastr.error(error.error, error.status.toString()) //controller return 400.
               }
               break;
             case 401:
