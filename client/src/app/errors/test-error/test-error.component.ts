@@ -55,7 +55,7 @@ export class TestErrorComponent implements OnInit {
       next: response => console.log(response),
       error: error => {
         console.log(error);
-        // this.validationErrors = error;
+        this.validationErrors = error;
         // console.log(this.validationErrors);
         
       }
