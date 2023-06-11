@@ -20,7 +20,6 @@ namespace API.Controllers
             _context = context;
         }
 
-[AllowAnonymous]
         [HttpGet]
 
 
