@@ -36,21 +36,21 @@ export class PhotoEditorComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  // setMainPhoto(photo: Photo) {
-  //   this.memberService.setMainPhoto(photo.id).subscribe({
-  //     next: () => {
-  //       if (this.user && this.member) {
-  //         this.user.photoUrl = photo.url;
-  //         this.accountService.setCurrentUser(this.user);
-  //         this.member.photoUrl = photo.url;
-  //         this.member.photos.forEach(p => {
-  //           if (p.isMain) p.isMain = false;
-  //           if (p.id === photo.id) p.isMain = true;
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
+  setMainPhoto(photo: Photo) {
+    this.memberService.setMainPhoto(photo.id).subscribe({
+      next: () => {
+        if (this.user && this.member) {
+          this.user.photoUrl = photo.url;
+          this.accountService.setCurrentUser(this.user);
+          this.member.photoUrl = photo.url;
+          this.member.photos.forEach(p => {
+            if (p.isMain) p.isMain = false;
+            if (p.id === photo.id) p.isMain = true;
+          })
+        }
+      }
+    })
+  }
 
   // deletePhoto(photoId: number) {
   //   this.memberService.deletePhoto(photoId).subscribe({
