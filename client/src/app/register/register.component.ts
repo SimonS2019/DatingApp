@@ -1,39 +1,58 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
-  model: any = {}
+  model: any = {};
 
   registerForm: FormGroup = new FormGroup({});
 
-  constructor(private accountService: AccountService,private toastr: ToastrService) { }
+  constructor(
+    private accountService: AccountService,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.initializeForm();
-   
   }
   initializeForm() {
     // this.registerForm = this.fb.group({
+
     this.registerForm = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl(),
-      confirmPassword: new FormControl(),
+      // gender: ['male'],
+      // username: ['', Validators.required],
+      // knownAs: ['', Validators.required],
+      // dateOfBirth: ['', Validators.required],
+      // city: ['', Validators.required],
+      // country: ['', Validators.required],
+      // password: ['', [Validators.required,
+      //   Validators.minLength(4), Validators.maxLength(8)]],
+      // confirmPassword: ['', [Validators.required, this.matchValues('password')]],
+      username: new FormControl('Hello', Validators.required),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(8),
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        // this.matchValues('password'),
+      ]),
     });
     // this.registerForm.controls['password'].valueChanges.subscribe({
     //   next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
     // })
   }
-  register() { 
+  register() {
     console.log(this.registerForm?.value);
-       
+
     // this.accountService.register(this.model).subscribe({
     //   next: () => {
     //     this.cancel();
@@ -47,5 +66,4 @@ export class RegisterComponent implements OnInit {
   cancel() {
     this.cancelRegister.emit(false);
   }
-
 }
