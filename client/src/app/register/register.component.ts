@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
+  maxDate: Date = new Date();
 
   registerForm: FormGroup = new FormGroup({});
 
@@ -26,6 +27,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() -18);
+
   }
   initializeForm() {
     this.registerForm = this.fb.group({
