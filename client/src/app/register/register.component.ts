@@ -1,7 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,47 +22,40 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({});
 
-  constructor(
-    private accountService: AccountService,
-    private toastr: ToastrService
-  ) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.initializeForm();
   }
   initializeForm() {
-    // this.registerForm = this.fb.group({
-
-    this.registerForm = new FormGroup({
+    this.registerForm = this.fb.group({
       // gender: ['male'],
-      // username: ['', Validators.required],
+      username: ['', Validators.required],
       // knownAs: ['', Validators.required],
       // dateOfBirth: ['', Validators.required],
       // city: ['', Validators.required],
       // country: ['', Validators.required],
-      // password: ['', [Validators.required,
-      //   Validators.minLength(4), Validators.maxLength(8)]],
-      // confirmPassword: ['', [Validators.required, this.matchValues('password')]],
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(8),
-      ]),
-      confirmPassword: new FormControl('', [
-        Validators.required,
-        this.matchValues('password'),
-      ]),
+      password: [
+        '',
+        [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
+      ],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchValues('password')],
+      ],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
-      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
-    })
+      next: () =>
+        this.registerForm.controls['confirmPassword'].updateValueAndValidity(),
+    });
   }
 
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
-      return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching: true}
-    }
+      return control.value === control.parent?.get(matchTo)?.value
+        ? null
+        : { notMatching: true };
+    };
   }
 
   register() {
