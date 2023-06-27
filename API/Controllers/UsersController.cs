@@ -3,6 +3,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +22,7 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        public UsersController(IUserRepository userRepository, IMapper mapper,IPhotoService photoService)
+        public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService)
         {
             _photoService = photoService;
             _mapper = mapper;
@@ -31,10 +32,12 @@ namespace API.Controllers
         [HttpGet]
 
 
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var users = await _userRepository.GetMembersAsync();
-
+            var users = await _userRepository.GetMembersAsync(userParams);
+            
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,
+                           users.TotalCount, users.TotalPages));
             return Ok(users);
         }
 
@@ -82,11 +85,11 @@ namespace API.Controllers
 
             user.Photos.Add(photo);
 
-            if (await _userRepository.SaveAllAsync()) 
+            if (await _userRepository.SaveAllAsync())
             {
                 // return _mapper.Map<PhotoDto>(photo);
-                return CreatedAtAction(nameof(GetUser), 
-                    new {username = user.UserName}, _mapper.Map<PhotoDto>(photo));
+                return CreatedAtAction(nameof(GetUser),
+                    new { username = user.UserName }, _mapper.Map<PhotoDto>(photo));
             }
 
 
