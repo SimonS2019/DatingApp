@@ -69,7 +69,7 @@
             "sslKey": "./ssl/server.key",
             "ssl": true,
             "port": 5200,
-            "host": "192.168.30.233"
+            "host": "172.20.10.7"
 
           },
 
