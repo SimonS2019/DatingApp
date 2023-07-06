@@ -50,19 +50,19 @@ namespace API.Controllers
             return BadRequest("Failed to send message");
         }
 
-        // [HttpGet]
-        // public async Task<ActionResult<PagedList<MessageDto>>> GetMessagesForUser([FromQuery]
-        //     MessageParams messageParams)
-        // {
-        //     messageParams.Username = User.GetUsername();
+        [HttpGet]
+        public async Task<ActionResult<PagedList<MessageDto>>> GetMessagesForUser([FromQuery]
+            MessageParams messageParams)
+        {
+            messageParams.Username = User.GetUsername();
 
-        //     var messages = await _messageRepository.GetMessagesForUser(messageParams);
+            var messages = await _messageRepository.GetMessagesForUser(messageParams);
 
-        //     Response.AddPaginationHeader(new PaginationHeader(messages.CurrentPage, messages.PageSize, 
-        //         messages.TotalCount, messages.TotalPages));
+            Response.AddPaginationHeader(new PaginationHeader(messages.CurrentPage, messages.PageSize, 
+                messages.TotalCount, messages.TotalPages));
             
-        //     return messages;
-        // }
+            return messages;
+        }
 
         // [HttpGet("thread/{username}")]
         // public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(string username)

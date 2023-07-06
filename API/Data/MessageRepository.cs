@@ -33,28 +33,26 @@ namespace API.Data
             return await _context.Messages.FindAsync(id);
         }
 
-        public async Task<PagedList<MessageDto>> GetMessagesForUser()
-        // public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
+        public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
         {
-            // var query = _context.Messages
-            //     .OrderByDescending(x => x.MessageSent)
-            //     .AsQueryable();
+            var query = _context.Messages
+                .OrderByDescending(x => x.MessageSent)
+                .AsQueryable();
 
-            // query = messageParams.Container switch
-            // {
-            //     "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username 
-            //         && u.RecipientDeleted == false),
-            //     "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username 
-            //         && u.SenderDeleted == false),
-            //     _ => query.Where(u => u.RecipientUsername == messageParams.Username 
-            //         && u.RecipientDeleted == false && u.DateRead == null)
-            // };
+            query = messageParams.Container switch
+            {
+                "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username 
+                    && u.RecipientDeleted == false),
+                "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username 
+                    && u.SenderDeleted == false),
+                _ => query.Where(u => u.RecipientUsername == messageParams.Username 
+                    && u.RecipientDeleted == false && u.DateRead == null)
+            };
 
-            // var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
+            var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
 
-            // return await PagedList<MessageDto>
-            //     .CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
-            throw new NotImplementedException();
+            return await PagedList<MessageDto>
+                .CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
 
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUserName, string recipientUserName)
