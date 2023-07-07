@@ -13,7 +13,7 @@ import { MessageService } from 'src/app/_services/message.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  @ViewChild('memberTabs', {static: true}) memberTabs?: TabsetComponent;
+  @ViewChild('memberTabs') memberTabs?: TabsetComponent;
   activeTab?: TabDirective;
 
   member: Member | undefined;
@@ -60,6 +60,17 @@ export class MemberDetailComponent implements OnInit {
         this.galleryImages = this.getImages();
       }
     })
+  }
+
+  selectTab(heading: string) {
+    console.log(heading);
+    console.log(this.memberTabs);
+
+    if (this.memberTabs) {
+      console.log(this.memberTabs);
+      
+      this.memberTabs.tabs.find(x => x.heading === heading)!.active = true
+    }
   }
 
   loadMessages() {
