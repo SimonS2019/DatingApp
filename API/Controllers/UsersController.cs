@@ -28,6 +28,7 @@ namespace API.Controllers
             _mapper = mapper;
             _userRepository = userRepository;
         }
+        // [Authorize(Roles = "Admin")]
 
         [HttpGet]
 
@@ -49,6 +50,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        // [Authorize(Roles = "Member")]
 
         [HttpGet("{username}")]
 
