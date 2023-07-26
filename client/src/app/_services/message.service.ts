@@ -21,6 +21,8 @@ export class MessageService {
   constructor(private http: HttpClient) {}
 
   createHubConnection(user: User, otherUsername: string) {
+    console.log("createHubConnection!@@@@@");
+    
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
         accessTokenFactory: () => user.token,
@@ -32,6 +34,8 @@ export class MessageService {
 
     this.hubConnection.on('ReceiveMessageThread', (messages) => {
       this.messageThreadSource.next(messages);
+      console.log(messages);
+      
     });
 
     this.hubConnection.on('NewMessage', (message) => {
@@ -42,6 +46,9 @@ export class MessageService {
           //     message.dateRead = new Date(Date.now());
           //   }
           // });
+          console.log(messages);
+          console.log(message);
+          
           this.messageThreadSource.next([...messages,message]);
         },
       });
