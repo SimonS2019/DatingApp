@@ -23,7 +23,7 @@ namespace API.SignalR
                 else
                 {
                     OnlineUsers.Add(username, new List<string> { connectionId });
-                    // isOnline = true;
+                    isOnline = true;
                 }
             }
 
@@ -47,7 +47,7 @@ namespace API.SignalR
                 if (OnlineUsers[username].Count == 0)
                 {
                     OnlineUsers.Remove(username);
-                    // isOffline = true;
+                    isOffline = true;
                 }
             }
             // return Task.CompletedTask;
