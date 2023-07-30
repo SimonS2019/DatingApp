@@ -10,10 +10,10 @@ namespace API.SignalR
         private static readonly Dictionary<string, List<string>> OnlineUsers =
            new Dictionary<string, List<string>>();
 
-        public Task UserConnected(string username, string connectionId)
-        // public Task<bool> UserConnected(string username, string connectionId)
+        // public Task UserConnected(string username, string connectionId)
+        public Task<bool> UserConnected(string username, string connectionId)
         {
-            // bool isOnline = false;
+            bool isOnline = false;
             lock (OnlineUsers)
             {
                 if (OnlineUsers.ContainsKey(username))
@@ -27,20 +27,20 @@ namespace API.SignalR
                 }
             }
 
-            return Task.CompletedTask;
-            // return Task.FromResult(isOnline);
+            // return Task.CompletedTask;
+            return Task.FromResult(isOnline);
         }
 
-        public Task UserDisconnected(string username, string connectionId)
-        //  public Task<bool> UserDisconnected(string username, string connectionId)
+        // public Task UserDisconnected(string username, string connectionId)
+         public Task<bool> UserDisconnected(string username, string connectionId)
         {
-            // bool isOffline = false;
+            bool isOffline = false;
 
             lock (OnlineUsers)
             {
-                if (!OnlineUsers.ContainsKey(username)) return Task.CompletedTask;
+                // if (!OnlineUsers.ContainsKey(username)) return Task.CompletedTask;
 
-                // if (!OnlineUsers.ContainsKey(username)) return Task.FromResult(isOffline);
+                if (!OnlineUsers.ContainsKey(username)) return Task.FromResult(isOffline);
 
                 OnlineUsers[username].Remove(connectionId);
 
@@ -50,8 +50,8 @@ namespace API.SignalR
                     // isOffline = true;
                 }
             }
-            return Task.CompletedTask;
-            // return Task.FromResult(isOffline);
+            // return Task.CompletedTask;
+            return Task.FromResult(isOffline);
         }
 
         public Task<string[]> GetOnlineUsers()
