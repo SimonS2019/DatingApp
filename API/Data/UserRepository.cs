@@ -95,10 +95,7 @@ namespace API.Data
                         .ToListAsync();
         }
 
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;//_context.SaveChangesAsync will return How many changes were made to the database. greate than 0 means something saved
-        }
+   
 
         public void Update(AppUser user)
         {
