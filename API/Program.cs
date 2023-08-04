@@ -35,6 +35,7 @@ app.UseStaticFiles(); //这个中间件用于从指定目录在您的 Web 应用
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/message");
+app.MapFallbackToController("Index", "Fallback");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
