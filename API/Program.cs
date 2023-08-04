@@ -29,6 +29,9 @@ app.UseCors(builder => builder
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseDefaultFiles(); //  提供默认文件，例如 index.html, default.html 等
+app.UseStaticFiles(); //这个中间件用于从指定目录在您的 Web 应用程序中提供静态文件（例如 HTML、CSS、JavaScript、图像等）。它允许访问存储在该目录中的文件，使得浏览器可以在需要时请求和加载这些资源。默认情况下，它会从 "wwwroot" 目录中提供文件，但如果需要，您可以指定其他目录。
+
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/message");
