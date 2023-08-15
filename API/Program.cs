@@ -15,10 +15,17 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 var connString = "";
-if (builder.Environment.IsDevelopment())
-    connString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (builder.Environment.IsDevelopment()){
+    // connString = builder.Configuration.GetConnectionString("DefaultConnection");
+           Console.Write("Is Development!: ");
+}
+    
+
 else
 {
+           Console.Write("Is Production!: ");
+
+}
     // Use connection string provided at runtime by FlyIO.
     var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
@@ -34,7 +41,7 @@ else
     var pgPort = pgHostPort.Split(":")[1];
 
     connString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};";
-}
+
 builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseNpgsql(connString);
